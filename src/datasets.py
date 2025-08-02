@@ -1,9 +1,6 @@
 import tensorflow as tf
 import tensorflow_datasets as tfds
 
-# -------------------------------
-# ✅ Load & build tokenizers
-# -------------------------------
 def load_tokenizer():
     examples, metadata = tfds.load(
         'ted_hrlr_translate/pt_to_en',
@@ -24,17 +21,11 @@ def load_tokenizer():
 
     return train_examples, val_examples, tokenizer_pt, tokenizer_en
 
-# -------------------------------
-# ✅ Encode single example
-# -------------------------------
 def encode(pt, en, tokenizer_pt, tokenizer_en):
     pt = [tokenizer_pt.vocab_size] + tokenizer_pt.encode(pt.numpy()) + [tokenizer_pt.vocab_size + 1]
     en = [tokenizer_en.vocab_size] + tokenizer_en.encode(en.numpy()) + [tokenizer_en.vocab_size + 1]
     return pt, en
 
-# -------------------------------
-# ✅ tf_encode closure (correct!)
-# -------------------------------
 def get_tf_encode(tokenizer_pt, tokenizer_en):
     def tf_encode(pt, en):
         result_pt, result_en = tf.py_function(
@@ -47,15 +38,9 @@ def get_tf_encode(tokenizer_pt, tokenizer_en):
         return result_pt, result_en
     return tf_encode
 
-# -------------------------------
-# ✅ Filter by max length
-# -------------------------------
 def filter_max_length(x, y, max_length=40):
     return tf.logical_and(tf.size(x) <= max_length, tf.size(y) <= max_length)
 
-# -------------------------------
-# ✅ Final dataset loader
-# -------------------------------
 def get_dataset(BUFFER_SIZE=20000, BATCH_SIZE=64, MAX_LENGTH=40):
     train_examples, val_examples, tokenizer_pt, tokenizer_en = load_tokenizer()
 
