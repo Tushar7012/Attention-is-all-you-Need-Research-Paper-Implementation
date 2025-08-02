@@ -2,9 +2,7 @@ import tensorflow as tf
 import sacrebleu
 import matplotlib.pyplot as plt
 
-# -------------------------------
-# ✅ Masks
-# -------------------------------
+
 def create_padding_mask(seq):
     seq = tf.cast(tf.math.equal(seq, 0), tf.float32)
     return seq[:, tf.newaxis, tf.newaxis, :]
@@ -21,17 +19,11 @@ def create_masks(inp, tar):
     combined_mask = tf.maximum(dec_target_padding_mask, look_ahead_mask)
     return enc_padding_mask, combined_mask, dec_padding_mask
 
-# -------------------------------
-# ✅ BLEU
-# -------------------------------
 def compute_bleu(references, hypotheses):
     bleu = sacrebleu.corpus_bleu(hypotheses, [references])
     print(f"Corpus BLEU: {bleu.score:.2f}")
     return bleu.score
 
-# -------------------------------
-# ✅ Attention plot (optional)
-# -------------------------------
 def plot_attention(attention, sentence, predicted_sentence, layer):
     fig = plt.figure(figsize=(16, 8))
     ax = fig.add_subplot(1, 1, 1)
