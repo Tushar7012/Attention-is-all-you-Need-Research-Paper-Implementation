@@ -1,0 +1,5 @@
+tensorflow-datasets
+sacrebleu
+numpy
+matplotlib
+-e .
