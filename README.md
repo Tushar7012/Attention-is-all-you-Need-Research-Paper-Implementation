@@ -1,4 +1,4 @@
-# 📚 Attention Is All You Need — Transformer (TensorFlow)
+# Attention Is All You Need — Transformer (TensorFlow)
 
 This project is a **full implementation** of the famous [*Attention Is All You Need*](https://arxiv.org/abs/1706.03762) paper (**Vaswani et al., 2017**) using **TensorFlow 2.x**, built **from scratch**.
 
@@ -12,27 +12,27 @@ It covers:
 
 ---
 
-## 📌 **Dataset**
+## **Dataset**
 
 This demo uses **Portuguese → English** translation from the WMT dataset.  
 Example test input:
 
 ---
 
-## 📂 **Project Structure**
+## **Project Structure**
   Attention-Is-All-You-Need/
-├── src/
-│ ├── layers.py # Attention, FFN, Positional Encoding
-│ ├── model.py # Full Transformer architecture
-│ ├── utils.py # Masks, BLEU, helper functions
-│ ├── dataset.py # Tokenizer, tf.data input pipeline
-│ ├── train.py # Training loop (saves weights)
-│ ├── inference.py # Loads weights & runs translation
+└── src/
+├── layers.py # Attention, FFN, Positional Encoding
+├── model.py # Full Transformer architecture
+├── utils.py # Masks, BLEU, helper functions
+├── dataset.py # Tokenizer, tf.data input pipeline
+├── train.py # Training loop (saves weights)
+└── inference.py # Loads weights & runs translation
 
 
 ---
 
-## ⚙️ **Installation**
+## **Installation**
 
 ```bash
 python -m venv venv
